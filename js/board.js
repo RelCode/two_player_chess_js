@@ -21,15 +21,15 @@ for (let i = 0; i < 8; i++) {
         var piece = '';
         if(i == 0 && j < 8 || i == 7 && j < 8){
             let side = i === 0 ? 'black' : 'white';
-            piece = '<img class="piece" src="./chess pieces/'+side+'/' + pieces[placePiece] + '.png" alt="'+pieces[placePiece]+'" title="'+pieces[placePiece]+'" data-side="'+className+'"/>';
+            piece = '<img class="piece" src="./chess pieces/'+side+'/' + pieces[placePiece] + '.png" alt="'+pieces[placePiece]+'" title="'+pieces[placePiece]+'" data-side="'+className+'" data-piece="'+side+'"/>';
             placePiece = placePiece + 1;
         }
         if(i == 1 && j < 8 || i == 6 && j < 8){
             let side = i === 1 ? 'black' : 'white';
-            piece = '<img class="piece" src="./chess pieces/'+side+'/pawn.png" alt="pawn" title="pawn" data-side="'+className+'"/>';
+            piece = '<img class="piece" src="./chess pieces/'+side+'/pawn.png" alt="pawn" title="pawn" data-side="'+side+'" data-piece="pawn"/>';
             placePiece = placePiece + 1;
         }
-        row += '<div class="block '+className+'" id="'+i+''+j+'" style="width:'+squareWidth+'px;height:'+squareHeight+'px;">'+columns[i]+''+rows[j]+''+piece+'</div>';
+        row += '<div class="block '+className+'" id="'+i+'-'+j+'" style="width:'+squareWidth+'px;height:'+squareHeight+'px;">'+columns[i]+''+rows[j]+''+piece+'</div>';
     }
 }
 document.querySelector('.squares').innerHTML = row;

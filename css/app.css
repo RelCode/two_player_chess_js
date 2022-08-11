@@ -23,12 +23,14 @@ html, body {
     align-items: center;
     color: inherit;
     position: relative;
+    color: transparent;
 }
 
 .block img {
     position: absolute;
     height: 100%;
     width: 60%;
+    z-index: 9;
 }
 
 .piece {
@@ -37,12 +39,15 @@ html, body {
 
 .black {
     background-color: #7d945c;
-    color: #7d945c;
 }
 
 .white {
     background-color: white;
-    color: white;
+}
+
+.playable {
+    border: 2px solid black;
+    cursor: pointer;
 }
 
 footer {
