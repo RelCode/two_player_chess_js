@@ -24,6 +24,7 @@ function availablePawnMoves(selectedSquare){
 }
 
 function playablePawnMoves(lw,cf,cf2,rw){
+    // console.log(lw,cf,cf2,rw)
     if(lw != null){//lw refers to the spot left-wide of the selectedSquare, we check if is not null
         if(lw.childNodes.length > 1 && lw.childNodes[1].dataset.side != turn){
             lw.classList.add('playable')
@@ -46,30 +47,35 @@ function playablePawnMoves(lw,cf,cf2,rw){
 for(const square of squares){
     square.addEventListener('click',() => {
         if(square.classList.contains('playable')){
+            // console.log('playable')
             let src = selectedBlock.childNodes[1];
             if(square.childNodes.length > 1){
                 square.childNodes[1].remove()
             }
             square.append(src)
             removePlayableSquares()
+            turn = turn == 'white' ? 'black' : 'white'
             //this will execute when a piece can be moved here
         }else{//we are selecting a piece to move
             //if the clicked square has a piece to be moved
+            // console.log('new move')
             if(square.childNodes.length > 1){
                 selectedBlock = square;
                 selectedPiece = square.childNodes[1].dataset.piece;
             }
-        }
-        switch (selectedPiece) {
-            case 'pawn':
-                availablePawnMoves(square)
-                break;
-            case 'knight':
-                console.log('f')
-                availableKnightMoves(selectedPiece)
-                break;
-            default:
-                break;
+            if(square.childNodes[1].dataset.side == turn){
+                switch (selectedPiece) {
+                    case 'pawn':
+                        availablePawnMoves(square)
+                        break;
+                    case 'knight':
+                        console.log('f')
+                        availableKnightMoves(selectedPiece)
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     })
 }
